@@ -2,8 +2,8 @@
 //  AppDelegate.swift
 //  Dicee
 //
-//  Created by Alvaro Santillan on 12/6/17.
-//  Copyright © 2017 Alvaro Santillan. All rights reserved.
+//  Created by Álvaro Santillan on 11/17/18.
+//  Copyright © 2018 Álvaro Santillan. All rights reserved.
 //
 
 import UIKit
@@ -14,7 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         return true
     }
