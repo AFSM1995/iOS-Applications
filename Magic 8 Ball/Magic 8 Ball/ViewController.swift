@@ -1,35 +1,39 @@
+//
 //  ViewController.swift
 //  Magic 8 Ball
-
-//  Created by Alvaro Santillan on 12/9/17.
-//  Copyright © 2017 Alvaro Santillan. All rights reserved.
+//
+//  Created by Álvaro Santillan on 11/17/18.
+//  Copyright © 2018 Álvaro Santillan. All rights reserved.
+//
 
 import UIKit
 
+class ViewController: UIViewController {
+    
+    let ballArray = ["ball1","ball2","ball3","ball4","ball5"]
+    var randomBallNumber: Int = 0
 
-class ViewController: UIViewController
-{
-    override func mutableArrayValue(forKey key: String) -> NSMutableArray
-    {
-        (ball1, ball2, ball3, ball4, ball5)
+    @IBOutlet weak var ballImage: UIImageView!
+    
+    @IBAction func askButtonPressed(_ sender: Any) {
+        generateAnswer()
     }
     
-    int arc4random_uniform(4)
+    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        generateAnswer()
+    }
     
-    @IBOutlet weak var imageView: UIImageView!
-    // Conecting 8 Ball image to code
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view, typically from a nib.
+        generateAnswer()
+    }
     
-    override func viewDidLoad( )
-    {
-        super.viewDidLoad( )
+    func generateAnswer() {
+        // Generate random number
+        randomBallNumber = Int.random(in: 0 ... 4)
         
+        // Use randome numbers to pick an image from diceArray
+        ballImage.image = UIImage(named: ballArray[randomBallNumber])
     }
-
-    override func didReceiveMemoryWarning( )
-    {
-        super.didReceiveMemoryWarning( )
-        
-    }
-    
-    
 }

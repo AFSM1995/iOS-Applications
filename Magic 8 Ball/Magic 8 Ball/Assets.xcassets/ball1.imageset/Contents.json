@@ -2,6 +2,7 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "ball1.png",
       "scale" : "1x"
     },
     {
