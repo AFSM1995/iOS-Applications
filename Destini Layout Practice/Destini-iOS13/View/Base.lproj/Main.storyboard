@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="landscape" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Destini_iOS13" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="WOu-UK-L5x">
+                                <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="23" translatesAutoresizingMaskIntoConstraints="NO" id="LmN-Zf-V1D">
+                                <rect key="frame" x="44" y="0.0" width="852" height="393"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0gb-Cw-vtd">
+                                        <rect key="frame" x="0.0" y="0.0" width="852" height="147"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DoG-fR-l61">
+                                        <rect key="frame" x="0.0" y="170" width="852" height="100"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="100" id="B01-j2-UdA"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                        <state key="normal" title="Choice 1" backgroundImage="choice1Background">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xN8-UZ-s8U">
+                                        <rect key="frame" x="0.0" y="293" width="852" height="100"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="100" id="tMh-SZ-oep"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                        <state key="normal" title="Choice 2" backgroundImage="choice2Background">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="0gb-Cw-vtd" firstAttribute="centerX" secondItem="LmN-Zf-V1D" secondAttribute="centerX" id="Hih-aI-3zD"/>
+                                    <constraint firstAttribute="bottom" secondItem="xN8-UZ-s8U" secondAttribute="bottom" id="Ynj-Zw-meh"/>
+                                    <constraint firstItem="xN8-UZ-s8U" firstAttribute="centerX" secondItem="LmN-Zf-V1D" secondAttribute="centerX" id="eWc-F4-xoj"/>
+                                    <constraint firstItem="DoG-fR-l61" firstAttribute="centerX" secondItem="LmN-Zf-V1D" secondAttribute="centerX" id="wth-yN-zZa"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="WOu-UK-L5x" secondAttribute="bottom" id="0NM-HK-lvd"/>
+                            <constraint firstAttribute="trailing" secondItem="LmN-Zf-V1D" secondAttribute="trailing" id="0sc-2c-TVw"/>
+                            <constraint firstItem="LmN-Zf-V1D" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="2rR-Yq-JKa"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="LmN-Zf-V1D" secondAttribute="bottom" id="SgQ-Uv-k7b"/>
+                            <constraint firstItem="WOu-UK-L5x" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="VvJ-lh-ExI"/>
+                            <constraint firstAttribute="trailing" secondItem="WOu-UK-L5x" secondAttribute="trailing" id="eXf-Wy-61R"/>
+                            <constraint firstItem="WOu-UK-L5x" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="mXW-Sh-CDD"/>
+                            <constraint firstItem="LmN-Zf-V1D" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="v89-MT-2GL"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="137.68115942028987" y="137.94642857142856"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="background" width="958" height="1793"/>
+        <image name="choice1Background" width="1370.5" height="363"/>
+        <image name="choice2Background" width="1370.5" height="363"/>
+    </resources>
+</document>
