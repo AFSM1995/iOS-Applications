@@ -17,13 +17,27 @@ https://www.colorzilla.com/
 Wire Framing
 https://www.uistencils.com/blogs/news/ui-stencils-drafting-templates
 https://wireframe.cc/
-Pop App wireframe linker
+"Pop App" wireframe linker
    iOS: https://apps.apple.com/app/id555647796
    Android: -
    Windows tablet: https://www.microsoft.com/en-us/p/pop-prototyping-on-paper/9wzdncrdjp7z?rtc=1&activetab=pivot:overviewtab
 
 Markups
-Photoshop/Illustrator: http://www.adobe.com/uk/products/catalog.html
-Sketch 3: https://www.sketchapp.com/
-Marvel: https://marvelapp.com/dashboard/
-Canva: https://www.canva.com/
+http://www.adobe.com/uk/products/catalog.html
+https://www.sketchapp.com/
+https://marvelapp.com/dashboard/
+(Sketch Alternative): https://www.canva.com/
+
+Mockups (View design on real device)
+https://www.sketchappsources.com/search_mockup.html
+(Paid) https://placeit.net/
+https://magicmockups.com/
+https://smartmockups.com/
+https://www.uxpin.com/
+https://www.invisionapp.com/
+https://moqups.com/
+
+Prototypes (Moving Final Designs)
+https://www.invisionapp.com/
+https://marvelapp.com/dashboard/
+https://principleformac.com/
