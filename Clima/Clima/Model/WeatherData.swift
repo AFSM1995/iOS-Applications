@@ -8,16 +8,17 @@
 
 import Foundation
 
-struct WeatherData: Decodable {
+// Format API data using decodable structs.
+struct WeatherData: Codable {
     let name: String
     let main: Main
     let weather: [Weather]
 }
 
-struct Main: Decodable {
+struct Main: Codable {
     let temp: Double
 }
 
-struct Weather: Decodable {
-    let description: String
+struct Weather: Codable {
+    let id: Int
 }
