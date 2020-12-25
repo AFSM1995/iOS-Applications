@@ -8,7 +8,8 @@
 
 import Foundation
 
-struct ExchangeData: Codable {
+// Struct that temporarly stores API request data.
+struct APIRequestData: Codable {
     let rate: Double
     let asset_id_quote: String
 }

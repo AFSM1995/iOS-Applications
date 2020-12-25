@@ -8,16 +8,8 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+class ViewController: UIViewController {
     var coinManager = CoinManager()
-    
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        coinManager.currencyArray.count
-    }
     
     @IBOutlet weak var currencyLabel: UILabel!
     @IBOutlet weak var bitcoinLabel: UILabel!
@@ -28,21 +20,31 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         currencyPicker.dataSource = self
         currencyPicker.delegate = self
         coinManager.delegate = self
-        // Do any additional setup after loading the view.
     }
+}
 
+//MARK: - UIPickerViewDelegate
+extension ViewController: UIPickerViewDataSource, UIPickerViewDelegate {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        coinManager.currencyArray.count
+    }
+    
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         coinManager.currencyArray[row]
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        coinManager.getCoinPrice(for: coinManager.currencyArray[row])
+        coinManager.stageAPIRequest(for: coinManager.currencyArray[row])
     }
-
 }
 
+//MARK: - ExchangeManagerDelegate
 extension ViewController: ExchangeManagerDelegate {
-    func didUpdateExchangeRate(exchange: ExchangeModel) {
+    func didUpdateExchangeRate(exchange: UIDataModel) {
         DispatchQueue.main.async {
             self.currencyLabel.text = exchange.quoteCurrency
             self.bitcoinLabel.text = exchange.rateAsString

@@ -8,7 +8,8 @@
 
 import Foundation
 
-struct ExchangeModel {
+// Struct that stores proccessed data for UI population.
+struct UIDataModel {
     let rate: Double
     let quoteCurrency: String
     

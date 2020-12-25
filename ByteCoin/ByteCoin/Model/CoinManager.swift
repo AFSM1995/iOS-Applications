@@ -8,24 +8,26 @@
 
 import Foundation
 
+// Creating cirtification to create custom delegate.
 protocol ExchangeManagerDelegate {
-    func didUpdateExchangeRate(exchange: ExchangeModel)
+    func didUpdateExchangeRate(exchange: UIDataModel)
     func didFailWithError(error: Error)
 }
 
 struct CoinManager {
+    // Set up the delegate so that we can use who ever impliments ExchangeManagerDelegate`s required functions.
     var delegate: ExchangeManagerDelegate?
+    
     let baseURL = "https://rest.coinapi.io/v1/exchangerate/BTC"
     let apiKey = "7AA4D0C0-D553-40EA-A7C8-406ED05E4B14"
-    
     let currencyArray = ["AUD", "BRL","CAD","CNY","EUR","GBP","HKD","IDR","ILS","INR","JPY","MXN","NOK","NZD","PLN","RON","RUB","SEK","SGD","USD","ZAR"]
 
-    func getCoinPrice(for currency: String) {
+    func stageAPIRequest(for currency: String) {
         let urlString = "\(baseURL)/\(currency)?apikey=\(apiKey)"
-        performRequest(with: urlString)
+        performAPIRequest(with: urlString)
     }
     
-    func performRequest(with urlString: String) {
+    func performAPIRequest(with urlString: String) {
         // 1. Create a URl
         if let url = URL(string: urlString) {
             // 2. Create a URLSession
@@ -44,21 +46,20 @@ struct CoinManager {
                     }
                 }
             })
-            
             // 4. Start the task
             task.resume()
         }
     }
     
-    // Create a decoder and use it to decode the API data.
-    func parseData(_ exchangeData: Data) -> ExchangeModel? {
+    // Create a decoder and use it to decode the API data and bundule it into an object.
+    func parseData(_ exchangeData: Data) -> UIDataModel? {
         let decoder = JSONDecoder()
         
         do {
-            let decodedData = try decoder.decode(ExchangeData.self, from: exchangeData)
+            let decodedData = try decoder.decode(APIRequestData.self, from: exchangeData)
             let rate = decodedData.rate
             let quoteCurrency = decodedData.asset_id_quote
-            let exchange = ExchangeModel(rate: rate, quoteCurrency: quoteCurrency)
+            let exchange = UIDataModel(rate: rate, quoteCurrency: quoteCurrency)
             return exchange
         } catch {
             delegate?.didFailWithError(error: error)
@@ -66,6 +67,3 @@ struct CoinManager {
         }
     }
 }
-
-
-//https://rest.coinapi.io/v1/exchangerate/BTC/USD?apikey=7AA4D0C0-D553-40EA-A7C8-406ED05E4B14

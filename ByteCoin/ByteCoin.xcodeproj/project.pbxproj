@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		38922AED25956E82004A8447 /* ExchangeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38922AEC25956E82004A8447 /* ExchangeData.swift */; };
-		38922AEF25956F79004A8447 /* ExchangeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38922AEE25956F79004A8447 /* ExchangeModel.swift */; };
+		38922AED25956E82004A8447 /* APIRequestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38922AEC25956E82004A8447 /* APIRequestData.swift */; };
+		38922AEF25956F79004A8447 /* UIDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38922AEE25956F79004A8447 /* UIDataModel.swift */; };
 		ADA8AC092329367100626376 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA8AC082329367100626376 /* AppDelegate.swift */; };
 		ADA8AC0B2329367100626376 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA8AC0A2329367100626376 /* SceneDelegate.swift */; };
 		ADA8AC0D2329367100626376 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA8AC0C2329367100626376 /* ViewController.swift */; };
@@ -19,8 +19,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		38922AEC25956E82004A8447 /* ExchangeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeData.swift; sourceTree = "<group>"; };
-		38922AEE25956F79004A8447 /* ExchangeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeModel.swift; sourceTree = "<group>"; };
+		38922AEC25956E82004A8447 /* APIRequestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequestData.swift; sourceTree = "<group>"; };
+		38922AEE25956F79004A8447 /* UIDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDataModel.swift; sourceTree = "<group>"; };
 		ADA8AC052329367100626376 /* ByteCoin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ByteCoin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADA8AC082329367100626376 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ADA8AC0A2329367100626376 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -94,8 +94,8 @@
 			isa = PBXGroup;
 			children = (
 				ADA8AC1F2329398300626376 /* CoinManager.swift */,
-				38922AEC25956E82004A8447 /* ExchangeData.swift */,
-				38922AEE25956F79004A8447 /* ExchangeModel.swift */,
+				38922AEC25956E82004A8447 /* APIRequestData.swift */,
+				38922AEE25956F79004A8447 /* UIDataModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -173,9 +173,9 @@
 			files = (
 				ADA8AC202329398300626376 /* CoinManager.swift in Sources */,
 				ADA8AC0D2329367100626376 /* ViewController.swift in Sources */,
-				38922AEF25956F79004A8447 /* ExchangeModel.swift in Sources */,
+				38922AEF25956F79004A8447 /* UIDataModel.swift in Sources */,
 				ADA8AC092329367100626376 /* AppDelegate.swift in Sources */,
-				38922AED25956E82004A8447 /* ExchangeData.swift in Sources */,
+				38922AED25956E82004A8447 /* APIRequestData.swift in Sources */,
 				ADA8AC0B2329367100626376 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
