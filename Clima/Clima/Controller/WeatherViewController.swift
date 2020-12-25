@@ -22,16 +22,9 @@ class WeatherViewController: UIViewController {
         super.viewDidLoad()
         
         locationManager.delegate = self
-        
-        // Ask for location permission then get location data
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.requestLocation()
-        
         searchTextField.delegate = self
         weatherManager.delegate = self
-    }
-    
-    @IBAction func currentLocationButtonPressed(_ sender: UIButton) {
+        
         // Ask for location permission then get location data
         locationManager.requestWhenInUseAuthorization()
         locationManager.requestLocation()
@@ -86,7 +79,11 @@ extension WeatherViewController: WeatherManagerDelegate {
 
 //MARK: - CLLocationManagerDelegate
 extension WeatherViewController: CLLocationManagerDelegate {
-    
+    @IBAction func currentLocationButtonPressed(_ sender: UIButton) {
+        // Ask for location permission then get location data
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.requestLocation()
+    }
     
     // Both implimented didUpdateLocations & didFailWithError required for CLLocationManagerDelegate
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
