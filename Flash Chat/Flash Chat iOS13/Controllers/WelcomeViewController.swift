@@ -17,7 +17,7 @@ class WelcomeViewController: UIViewController {
         super.viewDidLoad()
         
         // With Cocoa pod
-        titleLabel.text = "⚡️FlashChat"
+        titleLabel.text = Constants.appName
         
 
 // Without Cocoa pod
