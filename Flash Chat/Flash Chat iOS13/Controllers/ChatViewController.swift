@@ -27,6 +27,9 @@ class ChatViewController: UIViewController {
         navigationItem.title = Constants.appName
         navigationItem.hidesSearchBarWhenScrolling = true
         navigationItem.hidesBackButton = true
+        
+        // Register custom cell
+        tableView.register(UINib(nibName: Constants.cellNibName, bundle: nil), forCellReuseIdentifier: Constants.cellIdentifier)
     }
     
     @IBAction func sendPressed(_ sender: UIButton) {
@@ -50,8 +53,9 @@ extension ChatViewController: UITableViewDataSource {
     
     // Populate the rows with information.
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.cellIdentifier, for: indexPath)
-        cell.textLabel?.text = message[indexPath.row].body
+        // Cast as custom "MessageCell" we created.
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.cellIdentifier, for: indexPath) as! MessageCell
+        cell.message.text = message[indexPath.row].body
         return cell
     }
 }
