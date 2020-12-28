@@ -54,6 +54,10 @@ class ChatViewController: UIViewController {
                             // Good pactice, get hold of main queue since grabbing documents is happening in the background.
                             DispatchQueue.main.async {
                                 self.tableView.reloadData()
+                                // Unlike the table view displayed in settings, this app only has one section.
+                                let indexPath = IndexPath(row: self.messageArray.count - 1, section: 0)
+                                self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+                                self.messageTextfield.text = ""
                             }
                         }
                     }
