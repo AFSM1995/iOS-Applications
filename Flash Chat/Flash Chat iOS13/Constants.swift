@@ -8,6 +8,7 @@
 
 import Foundation
 
+// Good practice to avoid user errors.
 struct Constants {
     static let appName = "Flash Chat"
     static let cellIdentifier = "ReusableCell"

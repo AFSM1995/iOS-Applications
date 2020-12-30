@@ -8,6 +8,7 @@
 
 import UIKit
 
+// Custom tableview cell.
 class MessageCell: UITableViewCell {
     @IBOutlet weak var messageBubble: UIView!
     @IBOutlet weak var message: UILabel!
@@ -22,8 +23,6 @@ class MessageCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
         // Configure the view for the selected state
     }
-    
 }
