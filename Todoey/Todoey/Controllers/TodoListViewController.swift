@@ -9,15 +9,20 @@
 import UIKit
 
 class TodoListViewController: UITableViewController {
-    var itemArray = ["A", "B", "C"]
+    var itemArray = [ItemModel]()
     let defaults = UserDefaults.standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        if let items = defaults.array(forKey: "TodoListArray") as? [String] {
-            itemArray = items
-        }
+        
+        var itemModel = ItemModel()
+        itemModel.name = "A"
+        itemArray.append(itemModel)
+        itemModel.name = "B"
+        itemArray.append(itemModel)
+        itemModel.name = "C"
+        itemArray.append(itemModel)
     }
     
     //MARK: - Tableview Datasource Methods
@@ -25,19 +30,35 @@ class TodoListViewController: UITableViewController {
         return itemArray.count
     }
     
+    // Figures out how to display a cell.
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let item = indexPath.row
+        
+        // Creates a new cell that dose not get reused.
+        // let cell = UITableViewCell(style: .default, reuseIdentifier: "ToDoItemCell")
+        
+        // Creates a reuseable cell. If a user scrolls down enoght the cel gets reused.
         let cell = tableView.dequeueReusableCell(withIdentifier: "ToDoItemCell", for: indexPath)
-        cell.textLabel?.text = itemArray[indexPath.row]
+        cell.textLabel?.text = itemArray[item].name
+        
+        if itemArray[item].done == true {
+            cell.accessoryType = .checkmark
+        } else {
+            cell.accessoryType = .none
+        }
+        
         return cell
     }
     
     //MARK: - Tableview Delegate Methods
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if tableView.cellForRow(at: indexPath)?.accessoryType == .checkmark {
-            tableView.cellForRow(at: indexPath)?.accessoryType = .none
-        } else {
-            tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
-        }
+        let item = indexPath.row
+        
+        // Better then an if else stament to reverse current state.
+        itemArray[item].done = !itemArray[item].done
+        
+        // Forces the table view to reload after you interact with one of the cells.
+        tableView.reloadData()
         
         // Animates deselection of a row
         tableView.deselectRow(at: indexPath, animated: true)
@@ -50,7 +71,10 @@ class TodoListViewController: UITableViewController {
         
         // Completion block that gets called when "Add Item" gets pressed.
         let action = UIAlertAction(title: "Add Item", style: .default) { (action) in
-            self.itemArray.append(textField.text!)
+            // Adding new item
+            var tempItem = ItemModel()
+            tempItem.name = textField.text!
+            self.itemArray.append(tempItem)
             self.tableView.reloadData()
             self.defaults.set(self.itemArray, forKey: "TodoListArray")
         }
