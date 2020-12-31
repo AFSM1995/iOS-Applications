@@ -8,7 +8,8 @@
 
 import Foundation
 
-struct ItemModel {
+// For item to be encodable and decodable all properties must use standard data types.
+struct ItemModel: Codable {
     var name: String = ""
     var done: Bool = false
 }

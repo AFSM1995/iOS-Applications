@@ -10,19 +10,14 @@ import UIKit
 
 class TodoListViewController: UITableViewController {
     var itemArray = [ItemModel]()
-    let defaults = UserDefaults.standard
+    let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Item.plist")
+//    let defaults = UserDefaults.standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
-        var itemModel = ItemModel()
-        itemModel.name = "A"
-        itemArray.append(itemModel)
-        itemModel.name = "B"
-        itemArray.append(itemModel)
-        itemModel.name = "C"
-        itemArray.append(itemModel)
+        print(dataFilePath)
+        loadItems()
     }
     
     //MARK: - Tableview Datasource Methods
@@ -40,13 +35,7 @@ class TodoListViewController: UITableViewController {
         // Creates a reuseable cell. If a user scrolls down enoght the cel gets reused.
         let cell = tableView.dequeueReusableCell(withIdentifier: "ToDoItemCell", for: indexPath)
         cell.textLabel?.text = itemArray[item].name
-        
-        if itemArray[item].done == true {
-            cell.accessoryType = .checkmark
-        } else {
-            cell.accessoryType = .none
-        }
-        
+        cell.accessoryType = itemArray[item].done ? .checkmark : .none
         return cell
     }
     
@@ -57,8 +46,7 @@ class TodoListViewController: UITableViewController {
         // Better then an if else stament to reverse current state.
         itemArray[item].done = !itemArray[item].done
         
-        // Forces the table view to reload after you interact with one of the cells.
-        tableView.reloadData()
+        saveItems()
         
         // Animates deselection of a row
         tableView.deselectRow(at: indexPath, animated: true)
@@ -75,8 +63,7 @@ class TodoListViewController: UITableViewController {
             var tempItem = ItemModel()
             tempItem.name = textField.text!
             self.itemArray.append(tempItem)
-            self.tableView.reloadData()
-            self.defaults.set(self.itemArray, forKey: "TodoListArray")
+            self.saveItems()
         }
         
         alert.addTextField { (alertTextField) in
@@ -86,5 +73,29 @@ class TodoListViewController: UITableViewController {
         
         alert.addAction(action)
         present(alert, animated: true, completion: nil)
+    }
+    
+    func saveItems() {
+        let encoder = PropertyListEncoder()
+        
+        do {
+            let data = try encoder.encode(itemArray)
+            try data.write(to: dataFilePath!)
+        } catch {
+            print("error")
+        }
+        
+        tableView.reloadData()
+    }
+    
+    func loadItems() {
+        if let data = try? Data(contentsOf: dataFilePath!) {
+            let decoder = PropertyListDecoder()
+            do {
+                itemArray = try decoder.decode([ItemModel].self, from: data)
+            } catch {
+                print("Error")
+            }
+        }
     }
 }
