@@ -7,11 +7,16 @@
 //
 
 import UIKit
+import CoreData
 
 class TodoListViewController: UITableViewController {
-    var itemArray = [ItemModel]()
-    let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Item.plist")
-//    let defaults = UserDefaults.standard
+    var itemArray = [Item]()
+    let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+    // Tap into UIApplication class then getting the shared singolton object (Current app as object).
+    // Taping into its delegate (of datatype UIApplicationDelegate) casting it as our class AppDelegate.
+    // Since both inharete form the UIApplicationDelegate the cast is valid.
+    // Now have access to app delagete as an object.
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,8 +65,9 @@ class TodoListViewController: UITableViewController {
         // Completion block that gets called when "Add Item" gets pressed.
         let action = UIAlertAction(title: "Add Item", style: .default) { (action) in
             // Adding new item
-            var tempItem = ItemModel()
+            var tempItem = Item(context: self.context)
             tempItem.name = textField.text!
+            tempItem.done = false
             self.itemArray.append(tempItem)
             self.saveItems()
         }
@@ -76,11 +82,9 @@ class TodoListViewController: UITableViewController {
     }
     
     func saveItems() {
-        let encoder = PropertyListEncoder()
-        
+        // Save using CoreData
         do {
-            let data = try encoder.encode(itemArray)
-            try data.write(to: dataFilePath!)
+            try context.save()
         } catch {
             print("error")
         }
@@ -88,13 +92,31 @@ class TodoListViewController: UITableViewController {
         tableView.reloadData()
     }
     
-    func loadItems() {
-        if let data = try? Data(contentsOf: dataFilePath!) {
-            let decoder = PropertyListDecoder()
-            do {
-                itemArray = try decoder.decode([ItemModel].self, from: data)
-            } catch {
-                print("Error")
+    func loadItems(with request: NSFetchRequest<Item> = Item.fetchRequest()) {
+        do {
+            itemArray = try context.fetch(request)
+        } catch {
+            print("Error fetching")
+        }
+        
+        tableView.reloadData()
+    }
+}
+
+extension TodoListViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        let request : NSFetchRequest<Item> = Item.fetchRequest()
+        request.predicate = NSPredicate(format: "name CONTAINS[cd] %@", searchBar.text!)
+        request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+        loadItems(with: request)
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchBar.text?.count == 0 {
+            loadItems()
+            
+            DispatchQueue.main.async {
+                searchBar.resignFirstResponder()
             }
         }
     }
